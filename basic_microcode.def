@@ -67,10 +67,20 @@ fetch:	addrsel=pc irload=1 			# Address=PC, Load IR register
 36: addrsel=pc  imload=1
 	aluop=sub  op2sel=treg, if norz then jump else pcincr
 
-# beq Rs,Rt,immed (46)
-# 	if Rs == Rt, PC <- PC + immed else  PC <- PC + 2
-46: addrsel=pc  imload=1
-	aluop=sub  op2sel=treg, if z then branch else pcincr
+# jlt Rs,Rt,immed (37)
+# 	if Rs < Rt, PC <- immed else  PC <- PC + 2
+37: addrsel=pc  imload=1
+	aluop=sub  op2sel=treg, if c then jump else pcincr
+
+# jge Rs,Rt,immed (38)
+# 	if Rs >= Rt, PC <- immed else  PC <- PC + 2
+38: addrsel=pc  imload=1
+	aluop=sub  op2sel=treg, if c then pcincr else jump
+
+# jeqz Rs,Rt,immed (39)
+# 	if Rs == 0, PC <- immed else  PC <- PC + 2
+39: addrsel=pc  imload=1
+	aluop=sub  op2sel=const0, if z then jump else pcincr
 
 #
 # Jump compared to zero operations
@@ -78,6 +88,11 @@ fetch:	addrsel=pc irload=1 			# Address=PC, Load IR register
 # JNEZ Rs,immed  ; If Rs != 0, PC <- immed else  PC <- PC + 2
 40:	addrsel=pc  imload=1								            # Read Immediate operand -> IMRegister
 	aluop=sub  op2sel=const0, if z then pcincr else jump		    # If z then pcincr else jump to immed; opsel=0 means value of 2 (constant 0 is selected!!!)
+
+# beq Rs,Rt,immed (46)
+# 	if Rs == Rt, PC <- PC + immed else  PC <- PC + 2
+46: addrsel=pc  imload=1
+	aluop=sub  op2sel=treg, if z then branch else pcincr
 
 #
 # li Rd,Immed    ; Load immediate Rd, immed   
