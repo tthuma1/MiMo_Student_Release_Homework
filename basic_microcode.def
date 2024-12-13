@@ -21,17 +21,17 @@ fetch:	addrsel=pc irload=1 			# Address=PC, Load IR register
 	aluop=add  op2sel=immed  dwrite=1  regsrc=aluout, goto pcincr
 
 # subi Rd,Rs,immed (17)
-# 	Rd <- Rs + immed	PC <- PC + 2
+# 	Rd <- Rs - immed	PC <- PC + 2
 17: addrsel=pc  imload=1								            # Read Immediate operand -> IMRegister
 	aluop=sub  op2sel=immed  dwrite=1  regsrc=aluout, goto pcincr
 
 # muli Rd,Rs,immed (18)
-# 	Rd <- Rs + immed	PC <- PC + 2
+# 	Rd <- Rs * immed	PC <- PC + 2
 18: addrsel=pc  imload=1								            # Read Immediate operand -> IMRegister
 	aluop=mul  op2sel=immed  dwrite=1  regsrc=aluout, goto pcincr
 
 # divi Rd,Rs,immed (19)
-# 	Rd <- Rs + immed	PC <- PC + 2
+# 	Rd <- Rs / immed	PC <- PC + 2
 19: addrsel=pc  imload=1								            # Read Immediate operand -> IMRegister
 	aluop=div  op2sel=immed  dwrite=1  regsrc=aluout, goto pcincr
 
@@ -51,6 +51,11 @@ fetch:	addrsel=pc irload=1 			# Address=PC, Load IR register
 # 	if Rs == Rt, PC <- immed else  PC <- PC + 2
 33: addrsel=pc  imload=1
 	aluop=sub  op2sel=treg, if z then jump else pcincr
+
+# jne Rs,Rt,immed (34)
+# 	if Rs != Rt, PC <- immed else  PC <- PC + 2
+34: addrsel=pc  imload=1
+	aluop=sub  op2sel=treg, if z then pcincr else jump
 
 # beq Rs,Rt,immed (46)
 # 	if Rs == Rt, PC <- PC + immed else  PC <- PC + 2
@@ -91,3 +96,5 @@ branch:	pcload=1  pcsel=pcimmed, goto fetch
 # TODO: add branch with address in SReg
 # sw with address in treg
 # constants in binary or hex
+# floating point enota
+# ledica, ki se prizge, ce je naslov 1000 v RAM enak 1 (ce je address=1000 in data=1 jo prizgi, ce je data=0, jo ugasni, sicer pusti na miru)
