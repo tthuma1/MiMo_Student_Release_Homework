@@ -42,6 +42,11 @@ fetch:	addrsel=pc irload=1 			# Address=PC, Load IR register
 31: addrsel=pc  imload=1								            # Read Immediate operand -> IMRegister
 	aluop=add  op2sel=treg  dwrite=1  regsrc=aluout, if c then jump else pcincr
 
+# subc Rd,Rs,Rt,immed (32)
+# 	Rd <- Rs - Rt	if carry set, PC <- immed else PC <- PC + 2
+32: addrsel=pc  imload=1								            # Read Immediate operand -> IMRegister
+	aluop=sub  op2sel=treg  dwrite=1  regsrc=aluout, if c then jump else pcincr
+
 # jeq Rs,Rt,immed (33)
 # 	if Rs == Rt, PC <- immed else  PC <- PC + 2
 33: addrsel=pc  imload=1
