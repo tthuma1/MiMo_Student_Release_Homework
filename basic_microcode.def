@@ -57,6 +57,16 @@ fetch:	addrsel=pc irload=1 			# Address=PC, Load IR register
 34: addrsel=pc  imload=1
 	aluop=sub  op2sel=treg, if z then pcincr else jump
 
+# jgt Rs,Rt,immed (35)
+# 	if Rs > Rt, PC <- immed else  PC <- PC + 2
+35: addrsel=pc  imload=1
+	aluop=sub  op2sel=treg, if norz then pcincr else jump
+
+# jle Rs,Rt,immed (36)
+# 	if Rs <= Rt, PC <- immed else  PC <- PC + 2
+36: addrsel=pc  imload=1
+	aluop=sub  op2sel=treg, if norz then jump else pcincr
+
 # beq Rs,Rt,immed (46)
 # 	if Rs == Rt, PC <- PC + immed else  PC <- PC + 2
 46: addrsel=pc  imload=1
