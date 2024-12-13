@@ -4,8 +4,8 @@
 # (c) GPL3 Warren Toomey, 2012
 #
 main:	li	r1, 2			# r1 is the counter
-		li	r2, -1			# Used to decrement r1
-loop:	add	r1, r1, r2		# r1--
-		jnez  r1, loop		# loop if r1 != 0
-		sw	r2, 16			# Save the r2	
+	li	r2, 1			# Used to decrement r1
+loop:	sub	r1, r1, r2		# r1--
+	jnez    r1, loop		# loop if r1 != 0
+	sw	r2, 16			# Save the r2	
 

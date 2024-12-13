@@ -9,6 +9,26 @@ fetch:	addrsel=pc irload=1 			# Address=PC, Load IR register
 # add Rd,Rs,Rt
 0:	aluop=add  op2sel=treg  dwrite=1  regsrc=aluout, goto fetch			# ALU=+, ALU 2nd op = treg, write from aluout to reg
 
+# sub Rd,Rs,Rt (1)
+#	Rd <- Rs - Rt		PC <- PC + 1
+1:	aluop=sub  op2sel=treg  dwrite=1  regsrc=aluout, goto fetch			# ALU=-, ALU 2nd op = treg, write from aluout to reg
+
+# addi Rd,Rs,immed (16)
+# 	Rd <- Rs + immed	PC <- PC + 2
+16: addrsel=pc  imload=1								            # Read Immediate operand -> IMRegister
+	aluop=add  op2sel=immed  dwrite=1  regsrc=aluout, goto pcincr
+
+
+# jeq Rs,Rt,immed (33)
+# 	if Rs == Rt, PC <- immed else  PC <- PC + 2
+33: addrsel=pc  imload=1
+	aluop=sub  op2sel=treg, if z then jump else pcincr
+
+# beq Rs,Rt,immed (46)
+# 	if Rs == Rt, PC <- PC + immed else  PC <- PC + 2
+46: addrsel=pc  imload=1
+	aluop=sub  op2sel=treg, if z then branch else pcincr
+
 #
 # Jump compared to zero operations
 #
@@ -35,3 +55,9 @@ pcincr:	pcload=1  pcsel=pc, goto fetch
 
 # Set address to immed and goto new command; for jumps to absolute immed address
 jump:	pcload=1  pcsel=immed, goto fetch
+
+branch:	pcload=1  pcsel=pcimmed, goto fetch
+
+
+
+# TODO: add branch with address in SReg
