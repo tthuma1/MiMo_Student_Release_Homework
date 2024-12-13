@@ -18,10 +18,15 @@ fetch:	addrsel=pc irload=1 			# Address=PC, Load IR register
 16: addrsel=pc  imload=1								            # Read Immediate operand -> IMRegister
 	aluop=add  op2sel=immed  dwrite=1  regsrc=aluout, goto pcincr
 
-# subi Rd,Rs,immed (16)
+# subi Rd,Rs,immed (17)
 # 	Rd <- Rs + immed	PC <- PC + 2
 17: addrsel=pc  imload=1								            # Read Immediate operand -> IMRegister
 	aluop=sub  op2sel=immed  dwrite=1  regsrc=aluout, goto pcincr
+
+# muli Rd,Rs,immed (18)
+# 	Rd <- Rs + immed	PC <- PC + 2
+18: addrsel=pc  imload=1								            # Read Immediate operand -> IMRegister
+	aluop=mul  op2sel=immed  dwrite=1  regsrc=aluout, goto pcincr
 
 # jeq Rs,Rt,immed (33)
 # 	if Rs == Rt, PC <- immed else  PC <- PC + 2

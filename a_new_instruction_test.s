@@ -4,4 +4,4 @@
 # (c) GPL3 Warren Toomey, 2012
 #
 main:	li	  r1, 2				# r0 is the running sum
-        subi r0, r1, 5
+        muli r0, r1, 5
