@@ -61,3 +61,5 @@ branch:	pcload=1  pcsel=pcimmed, goto fetch
 
 
 # TODO: add branch with address in SReg
+# sw with address in treg
+# constants in binary or hex
