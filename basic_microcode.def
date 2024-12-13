@@ -89,10 +89,21 @@ fetch:	addrsel=pc irload=1 			# Address=PC, Load IR register
 40:	addrsel=pc  imload=1								            # Read Immediate operand -> IMRegister
 	aluop=sub  op2sel=const0, if z then pcincr else jump		    # If z then pcincr else jump to immed; opsel=0 means value of 2 (constant 0 is selected!!!)
 
+# jmp immed (45)
+# 	PC <- immed
+45: addrsel=pc  imload=1, goto jump
+
 # beq Rs,Rt,immed (46)
 # 	if Rs == Rt, PC <- PC + immed else  PC <- PC + 2
 46: addrsel=pc  imload=1
 	aluop=sub  op2sel=treg, if z then branch else pcincr
+
+# bne Rs,Rt,immed (47)
+# 	if Rs != Rt, PC <- PC + immed else  PC <- PC + 2
+47: addrsel=pc  imload=1
+	aluop=sub  op2sel=treg, if z then pcincr else branch
+
+# other branches, same as jump but call branch microinstruction instead of jump
 
 #
 # li Rd,Immed    ; Load immediate Rd, immed   
