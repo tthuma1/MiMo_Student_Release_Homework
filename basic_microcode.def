@@ -170,6 +170,10 @@ fetch:	addrsel=pc irload=1 			# Address=PC, Load IR register
 #	Rd <- M[Rs+Rt]
 73: aluop=add op2sel=treg addrsel=aluout dwrite=1 regsrc=databus, goto fetch
 
+# swri Rd,Rs,Rt (74)
+#	M[Rs+Rt] <- Rd
+74: aluop=add op2sel=treg addrsel=aluout datawrite=1 datasel=dreg, goto fetch
+
 #
 # Other code which we call
 #
