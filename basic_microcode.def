@@ -131,11 +131,26 @@ fetch:	addrsel=pc irload=1 			# Address=PC, Load IR register
 63:	addrsel=pc  dwrite=1  regsrc=databus, goto pcincr				# additional increment (cause immed was read) and then new command
 #	pcload=1  pcsel=pc, goto fetch                                  # not optimal way to do this, better goto to pcincr: instead (line above)
 
+# lw Rd,immed (64)
+#	Rd <- M[immed]		PC <- PC + 2
+64: addrsel=pc  imload=1
+	addrsel=immed regsrc=databus dwrite=1, goto pcincr
+
 #
 # sw Rd,immed    ; Store Rd into M[immed] Rd->M[immed]; 
 65:	addrsel=pc  imload=1
 	addrsel=immed  datawrite=1  datasel=dreg, goto pcincr			# additional increment (cause immed was read) and then new command
 #	pcload=1  pcsel=pc, goto fetch                                  # not optimal way to do this, better goto to pcincr: instead (line above)
+
+# lwi Rd,Rs,immed (66)
+#	Rd <- M[Rs+immed]	PC <- PC + 2
+66: addrsel=pc  imload=1
+	aluop=add op2sel=immed addrsel=aluout regsrc=databus dwrite=1, goto pcincr
+
+# swi Rd,Rs,immed (67)
+#	M[Rs+immed] <- Rd	PC <- PC + 2
+67: addrsel=pc  imload=1
+	aluop=add op2sel=immed addrsel=aluout datasel=dreg datawrite=1, goto pcincr
 
 #
 # Other code which we call
