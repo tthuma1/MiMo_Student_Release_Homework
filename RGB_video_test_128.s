@@ -6,7 +6,7 @@
 main: li r0, 131072 # color, start with white
     li r1, 49151 # address, start at top left - 1
 
-loop: subi r0, r0, 8
+loop: subi r0, r0, 4
 	inc r1
 	swi r0, r1, 0
 	jnez r0, loop
