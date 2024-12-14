@@ -3,8 +3,7 @@
 # down to 1 and stores the result in memory location 256.
 # (c) GPL3 Warren Toomey, 2012
 #
-main: li r7, 20
-    li r0, 10
-    push r0
-    li r0, 15
-    pop r0
+main: li r0, 5
+    li r1, 10
+    sw r0, 15
+    lwri r2, r0, r1

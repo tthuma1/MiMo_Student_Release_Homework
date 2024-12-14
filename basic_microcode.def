@@ -166,6 +166,10 @@ fetch:	addrsel=pc irload=1 			# Address=PC, Load IR register
 #	Rd <- Rs			PC <- PC + 1
 70: regsrc=sreg dwrite=1, goto fetch
 
+# lwri Rd,Rs,Rt (73)
+#	Rd <- M[Rs+Rt]
+73: aluop=add op2sel=treg addrsel=aluout dwrite=1 regsrc=databus, goto fetch
+
 #
 # Other code which we call
 #
@@ -181,6 +185,7 @@ branch:	pcload=1  pcsel=pcimmed, goto fetch
 
 # TODO: add branch with address in SReg
 # sw with address in treg
+# `li r0, 5 ` throws because of space at the end
 # constants in binary or hex
 # floating point enota
 # opcija pcsel=databus, da pri rts ne rabis naloadat v immed
