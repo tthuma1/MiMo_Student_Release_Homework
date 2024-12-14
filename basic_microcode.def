@@ -105,6 +105,23 @@ fetch:	addrsel=pc irload=1 			# Address=PC, Load IR register
 
 # other branches, same as jump but call branch microinstruction instead of jump
 
+# jsr immed (59)
+# 	R7--, M[R7] <- PC + 2, PC <- immed
+59: addrsel=pc imload=1 
+	pcsel=pc pcload=1
+	aluop=sub op2sel=const1 swrite=1 regsrc=aluout # v SReg je R7
+	datawrite=1 addrsel=sreg datasel=pc, goto jump
+
+# rts (60)
+# 	PC <- M[R7], R7++
+60: addrsel=sreg imload=1 
+	pcsel=immed pcload=1
+	aluop=add op2sel=const1 swrite=1 regsrc=aluout, goto fetch
+
+#60: addrsel=sreg pcload=1 pcsel=databus
+#	aluop=add op2sel=const1 swrite=1 regsrc=aluout, goto fetch
+
+
 #
 # li Rd,Immed    ; Load immediate Rd, immed   
 63:	addrsel=pc  dwrite=1  regsrc=databus, goto pcincr				# additional increment (cause immed was read) and then new command
@@ -133,4 +150,5 @@ branch:	pcload=1  pcsel=pcimmed, goto fetch
 # sw with address in treg
 # constants in binary or hex
 # floating point enota
+# opcija pcsel=databus, da pri rts ne rabis naloadat v immed
 # ledica, ki se prizge, ce je naslov 1000 v RAM enak 1 (ce je address=1000 in data=1 jo prizgi, ce je data=0, jo ugasni, sicer pusti na miru)
