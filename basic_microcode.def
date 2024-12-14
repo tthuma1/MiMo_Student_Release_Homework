@@ -118,9 +118,13 @@ fetch:	addrsel=pc irload=1 			# Address=PC, Load IR register
 	pcsel=immed pcload=1
 	aluop=add op2sel=const1 swrite=1 regsrc=aluout, goto fetch
 
-#60: addrsel=sreg pcload=1 pcsel=databus
-#	aluop=add op2sel=const1 swrite=1 regsrc=aluout, goto fetch
+# inc Rs (61)
+# 	Rs <- Rs + 1, PC <- PC + 1
+61: aluop=add op2sel=const1 swrite=1 regsrc=aluout, goto fetch
 
+# dec Rs (62)
+# 	Rs <- Rs - 1, PC <- PC + 1
+62: aluop=sub op2sel=const1 swrite=1 regsrc=aluout, goto fetch
 
 #
 # li Rd,Immed    ; Load immediate Rd, immed   
