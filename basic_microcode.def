@@ -27,7 +27,7 @@ fetch:	addrsel=pc irload=1 			# Address=PC, Load IR register
 
 # lsr Rd,Rs,Rt (12)
 #	Rd <- Rs >> Rt		PC <- PC + 1
-12:	aluop=lsl  op2sel=treg  dwrite=1  regsrc=aluout, goto fetch			# ALU=-, ALU 2nd op = treg, write from aluout to reg
+12:	aluop=lsr  op2sel=treg  dwrite=1  regsrc=aluout, goto fetch			# ALU=-, ALU 2nd op = treg, write from aluout to reg
 
 # ... other arithmetic with Treg
 
@@ -226,8 +226,9 @@ branch:	pcload=1  pcsel=pcimmed, goto fetch
 # TODO: add branch with address in SReg
 # sw with address in treg
 # `li r0, 5 ` throws because of space at the end
-# constants in binary or hex
+# constants in binary or hex, constants in floating point get converted to ieee 754 16-bit
 # floating point enota
+# "half" and single precision FPU
 # opcija pcsel=databus, da pri rts ne rabis naloadat v immed
 # ledica, ki se prizge, ce je naslov 1000 v RAM enak 1 (ce je address=1000 in data=1 jo prizgi, ce je data=0, jo ugasni, sicer pusti na miru)
 # zastavice za signed in unsigned operacije
