@@ -14,3 +14,7 @@
 - 0b1000000000000010 = S1
 - 0b1000000000000011 = fpuop
 - (hitro) množenje matrik
+
+
+- "half" and single precision FPU
+- quake III inverse square root
