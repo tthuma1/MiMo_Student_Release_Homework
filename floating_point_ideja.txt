@@ -18,3 +18,12 @@
 
 - "half" and single precision FPU
 - quake III inverse square root
+
+- ko pišeš na naslov 10...14, se ti nastavi fpuenabled in potem jeČ
+    - 5b = fpusregsel
+    - 5b = fputregsel
+    - 4b = fpuop
+    - 1b = doublemode
+
+- rezultat gre v result register, ki se prebere, ko bereš iz 10...15
+- če množiš matrike gre rezultat nazaj v S registre
