@@ -140,8 +140,8 @@ while (<$IN>) {
     $_= $2;
   }
 
-  # Trim leading whitespace
-  $_ =~ s{^\s+}{};
+  # Trim leading and trailing whitespace
+  $_ =~ s/^\s+|\s+$//g;
 
   # Split the line up into the opcode and the arguments
   my ($opcode, $args)= split(/\s+/, $_,2);
@@ -198,10 +198,10 @@ while (<$IN>) {
 
     # Absolute immediate
     if ($atype eq 'i') {
-	# Deal with hex values
-	$arg= hex($arg) if ($arg =~ m{^0x});
-	# Simply bump up the PC and save the value for now
-	$PC++; $Mcode[$PC]= $arg; $Ltype[$PC]=1;
+		# Deal with hex values
+		$arg= hex($arg) if ($arg =~ m{^0x});
+		# Simply bump up the PC and save the value for now
+		$PC++; $Mcode[$PC]= $arg; $Ltype[$PC]=1;
     }
 
     # Relative immediate
