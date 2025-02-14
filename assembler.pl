@@ -199,17 +199,17 @@ while (<$IN>) {
     # Absolute immediate
     if ($atype eq 'i') {
 		# Deal with hex values
-		$arg= hex($arg) if ($arg =~ m{^0x});
+		$arg= convert_number($arg);
 		# Simply bump up the PC and save the value for now
 		$PC++; $Mcode[$PC]= $arg; $Ltype[$PC]=1;
     }
 
     # Relative immediate
     if ($atype eq 'I') {
-	# Deal with hex values
-	$arg= hex($arg) if ($arg =~ m{^0x});
-	# Bump up the PC and save the value, mark as relative
-	$PC++; $Mcode[$PC]= $arg; $Ltype[$PC]=2;
+		# Deal with hex values
+		$arg= convert_number($arg);
+		# Bump up the PC and save the value, mark as relative
+		$PC++; $Mcode[$PC]= $arg; $Ltype[$PC]=2;
     }
 
     # Indexed addressing. We want to allow these types of argument:
@@ -217,21 +217,21 @@ while (<$IN>) {
 	#    immed can be numeric or a label and 
 	#    Rn is the s-reg
     if ($atype eq 'X') {
-	my ($regnum, $immed);
-	if ($arg=~ m{(\S*)\([Rr](\d+)\)}) {
-	  $immed= $1; $regnum=$2;
-	}
-	if ($arg=~ m{[Rr](\d+)\((\S+)\)}) {
-	  $immed= $2; $regnum=$1;
-	}
-	if ($arg=~ m{[Rr](\d+),(\S+)}) {   # [ls]wi Rd,Rs,immed
-	  $immed= $2; $regnum=$1;
-	}
-        die("Bad indexed arg: $arg\n") if (!defined($regnum));
-	$immed=0 if ($immed eq "");
-	$immed= hex($immed) if ($immed =~ m{^0x});
-        $Mcode[$PC] += ($regnum & 7) << 3;
-	$PC++; $Mcode[$PC]= $immed; $Ltype[$PC]=1; next;
+		my ($regnum, $immed);
+		if ($arg=~ m{(\S*)\([Rr](\d+)\)}) {
+			$immed= $1; $regnum=$2;
+		}
+		if ($arg=~ m{[Rr](\d+)\((\S+)\)}) {
+			$immed= $2; $regnum=$1;
+		}
+		if ($arg=~ m{[Rr](\d+),(\S+)}) {   # [ls]wi Rd,Rs,immed
+			$immed= $2; $regnum=$1;
+		}
+		die("Bad indexed arg: $arg\n") if (!defined($regnum));
+		$immed=0 if ($immed eq "");
+		$immed= convert_number($arg);
+		$Mcode[$PC] += ($regnum & 7) << 3;
+		$PC++; $Mcode[$PC]= $immed; $Ltype[$PC]=1; next;
     }
 
     # Register indexed addressing. We want to see Rs(Rt) only.
@@ -290,3 +290,14 @@ for (my $i=0; $i < @Mcode; $i++) {
 }
 print($OUT "\n");
 exit(0);
+
+
+sub convert_number {
+    my ($str) = @_;
+
+    return hex($str) if ($str =~ m{^0x});
+    return oct($str) if ($str =~ m{^0b});
+    return oct(substr($str, 2)) if ($str =~ m{^0o});
+
+	return $str;
+}
