@@ -223,11 +223,12 @@ branch:	pcload=1  pcsel=pcimmed, goto fetch
 
 
 
-# TODO: add branch with address in SReg
+# TODO:
 # sw with address in treg
-# `li r0, 5 ` throws because of space at the end
+#-/ `li r0, 5 ` throws because of space at the end
 # constants in binary or hex, constants in floating point get converted to ieee 754 16-bit
 # floating point enota
+# dmode
 
 # razmisljal sem, da bi ukaze za FPU dodal v zbirnik, ampak bi za to rabil povecati kontrolno
 # vodilo, ampak sem se potem odločil, da se bo FPU nadziral podobno kot V/I naprave (preko glavnega pomnilnika) - zakaj ne bi obeh

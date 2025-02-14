@@ -1,6 +1,7 @@
 #!/usr/bin/perl
 use strict;
 use warnings;
+use POSIX qw(floor);
 
 # Assembler for Warren's 16-bit microcontrolled CPU.
 # (c) GPL3 Warren Toomey, 2012
@@ -298,6 +299,30 @@ sub convert_number {
     return hex($str) if ($str =~ m{^0x});
     return oct($str) if ($str =~ m{^0b});
     return oct(substr($str, 2)) if ($str =~ m{^0o});
+	return float_to_ieee754_16($str) if $str =~ m{^-?\d+\.\d+$};
 
 	return $str;
+}
+
+sub float_to_ieee754_16 {
+    my ($float) = @_;
+
+    # get 32-bit float in binary
+    my $binary = unpack("L", pack("f", $float));  
+
+    # Extract sign (1 bit), exponent (5 bits), and fraction (10 bits)
+    my $sign = ($binary >> 31) & 0x1;
+    my $exp  = (($binary >> 23) & 0xFF) - 127 + 15;  # Adjust bias
+    my $frac = ($binary >> 13) & 0x3FF;  # Get only top 10 bits of fraction
+
+    if ($exp < 0) {
+        # Subnormal number (set exponent to zero and shift fraction)
+        $frac = ($binary >> (23 - 10 + $exp)) & 0x3FF;
+        $exp = 0;
+    } elsif ($exp > 31) {
+        # Overflow (return infinity)
+        return ($sign << 15) | (31 << 10);
+    }
+
+    return ($sign << 15) | ($exp << 10) | $frac;
 }
