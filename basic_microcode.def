@@ -226,15 +226,14 @@ branch:	pcload=1  pcsel=pcimmed, goto fetch
 # TODO:
 # sw with address in treg
 #-/ `li r0, 5 ` throws because of space at the end
-# constants in binary or hex, constants in floating point get converted to ieee 754 16-bit
+#-/ constants in binary or hex, constants in floating point get converted to ieee 754 16-bit
 # floating point enota
 # dmode
+# quake iii inverse root
+# TTY  aj se ne prizge vedno, ko delas s FPU
 
 # razmisljal sem, da bi ukaze za FPU dodal v zbirnik, ampak bi za to rabil povecati kontrolno
-# vodilo, ampak sem se potem odločil, da se bo FPU nadziral podobno kot V/I naprave (preko glavnega pomnilnika) - zakaj ne bi obeh
-# verzij naredil? najbrž bi bilo to preveč dela
+# vodilo, ampak sem se potem odločil, da se bo FPU nadziral podobno kot V/I naprave (preko glavnega pomnilnika)
 
 
 # opcija pcsel=databus, da pri rts ne rabis naloadat v immed
-# ledica, ki se prizge, ce je naslov 1000 v RAM enak 1 (ce je address=1000 in data=1 jo prizgi, ce je data=0, jo ugasni, sicer pusti na miru)
-# zastavice za signed in unsigned operacije
