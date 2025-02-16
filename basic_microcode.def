@@ -165,7 +165,6 @@ fetch:	addrsel=pc irload=1 			# Address=PC, Load IR register
 #
 # li Rd,Immed    ; Load immediate Rd, immed   
 63:	addrsel=pc  dwrite=1  regsrc=databus, goto pcincr				# additional increment (cause immed was read) and then new command
-#	pcload=1  pcsel=pc, goto fetch                                  # not optimal way to do this, better goto to pcincr: instead (line above)
 
 # lw Rd,immed (64)
 #	Rd <- M[immed]		PC <- PC + 2
@@ -224,13 +223,12 @@ branch:	pcload=1  pcsel=pcimmed, goto fetch
 
 
 # TODO:
-# sw with address in treg
 #-/ `li r0, 5 ` throws because of space at the end
 #-/ constants in binary or hex, constants in floating point get converted to ieee 754 16-bit
-# floating point enota
-# dmode
-# quake iii inverse root
-# TTY  aj se ne prizge vedno, ko delas s FPU
+#-/ floating point enota
+#-/ dmode
+#-/ quake iii inverse root
+#-/ TTY  aj se ne prizge vedno, ko delas s FPU
 
 # razmisljal sem, da bi ukaze za FPU dodal v zbirnik, ampak bi za to rabil povecati kontrolno
 # vodilo, ampak sem se potem odločil, da se bo FPU nadziral podobno kot V/I naprave (preko glavnega pomnilnika)
