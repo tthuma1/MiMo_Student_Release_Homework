@@ -684,19 +684,19 @@
     </comp>
     <comp lib="0" loc="(1450,790)" name="Tunnel">
       <a name="facing" val="east"/>
+      <a name="label" val="fpuenable"/>
+      <a name="labelfont" val="SansSerif bold 12"/>
+    </comp>
+    <comp lib="0" loc="(1450,810)" name="Tunnel">
+      <a name="facing" val="east"/>
       <a name="label" val="fswrite"/>
       <a name="labelfont" val="SansSerif bolditalic 12"/>
     </comp>
-    <comp lib="0" loc="(1450,810)" name="Tunnel">
+    <comp lib="0" loc="(1450,830)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="label" val="fsselADDR"/>
       <a name="labelfont" val="SansSerif bolditalic 12"/>
       <a name="width" val="4"/>
-    </comp>
-    <comp lib="0" loc="(1450,830)" name="Tunnel">
-      <a name="facing" val="east"/>
-      <a name="label" val="fpuenable"/>
-      <a name="labelfont" val="SansSerif bold 12"/>
     </comp>
     <comp lib="0" loc="(1460,1570)" name="Tunnel">
       <a name="facing" val="east"/>
@@ -784,6 +784,12 @@
       <a name="facing" val="west"/>
     </comp>
     <comp lib="0" loc="(1710,1010)" name="Probe">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="labelfont" val="SansSerif bold 14"/>
+      <a name="radix" val="float"/>
+    </comp>
+    <comp lib="0" loc="(1710,1030)" name="Probe">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="labelfont" val="SansSerif bold 14"/>
@@ -924,12 +930,6 @@
       <a name="radix" val="float"/>
     </comp>
     <comp lib="0" loc="(1710,970)" name="Probe">
-      <a name="appearance" val="classic"/>
-      <a name="facing" val="west"/>
-      <a name="labelfont" val="SansSerif bold 14"/>
-      <a name="radix" val="float"/>
-    </comp>
-    <comp lib="0" loc="(1710,990)" name="Probe">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="labelfont" val="SansSerif bold 14"/>
@@ -1987,12 +1987,12 @@ a3a1 a1a3 9797 9898 a2a2 9a9a 0 4*a1a1
       <a name="labelfont" val="SansSerif bold 12"/>
       <a name="labelloc" val="north"/>
     </comp>
-    <comp lib="5" loc="(1700,1030)" name="LED">
+    <comp lib="5" loc="(1700,810)" name="LED">
       <a name="color" val="#2ef005"/>
       <a name="labelfont" val="SansSerif bold 12"/>
       <a name="labelloc" val="north"/>
     </comp>
-    <comp lib="5" loc="(1700,810)" name="LED">
+    <comp lib="5" loc="(1700,990)" name="LED">
       <a name="color" val="#2ef005"/>
       <a name="labelfont" val="SansSerif bold 12"/>
       <a name="labelloc" val="north"/>
@@ -2349,7 +2349,7 @@ a3a1 a1a3 9797 9898 a2a2 9a9a 0 4*a1a1
     <wire from="(1590,1600)" to="(1620,1600)"/>
     <wire from="(160,540)" to="(190,540)"/>
     <wire from="(1690,1010)" to="(1710,1010)"/>
-    <wire from="(1690,1030)" to="(1700,1030)"/>
+    <wire from="(1690,1030)" to="(1710,1030)"/>
     <wire from="(1690,1050)" to="(1710,1050)"/>
     <wire from="(1690,1070)" to="(1710,1070)"/>
     <wire from="(1690,1090)" to="(1840,1090)"/>
@@ -2376,7 +2376,7 @@ a3a1 a1a3 9797 9898 a2a2 9a9a 0 4*a1a1
     <wire from="(1690,930)" to="(1710,930)"/>
     <wire from="(1690,950)" to="(1710,950)"/>
     <wire from="(1690,970)" to="(1710,970)"/>
-    <wire from="(1690,990)" to="(1710,990)"/>
+    <wire from="(1690,990)" to="(1700,990)"/>
     <wire from="(1710,1280)" to="(1710,1290)"/>
     <wire from="(1710,600)" to="(1730,600)"/>
     <wire from="(1710,620)" to="(1730,620)"/>
