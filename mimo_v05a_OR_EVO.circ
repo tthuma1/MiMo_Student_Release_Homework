@@ -757,12 +757,12 @@
     </comp>
     <comp lib="0" loc="(1580,630)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="fhwrite"/>
+      <a name="label" val="fswrite"/>
       <a name="labelfont" val="SansSerif bolditalic 12"/>
     </comp>
     <comp lib="0" loc="(1580,660)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="fhselADDR"/>
+      <a name="label" val="fsselADDR"/>
       <a name="labelfont" val="SansSerif bolditalic 12"/>
       <a name="width" val="4"/>
     </comp>
@@ -5191,12 +5191,12 @@ a3a1 a1a3 9797 9898 a2a2 9a9a 0 4*a1a1
       <a name="width" val="16"/>
     </comp>
     <comp lib="0" loc="(1720,1160)" name="Tunnel">
-      <a name="label" val="fsselDATA"/>
+      <a name="label" val="ftsel"/>
       <a name="labelfont" val="SansSerif bold 12"/>
       <a name="width" val="4"/>
     </comp>
     <comp lib="0" loc="(1720,1180)" name="Tunnel">
-      <a name="label" val="ftsel"/>
+      <a name="label" val="fsselDATA"/>
       <a name="labelfont" val="SansSerif bold 12"/>
       <a name="width" val="4"/>
     </comp>
@@ -5697,7 +5697,7 @@ a3a1 a1a3 9797 9898 a2a2 9a9a 0 4*a1a1
     </comp>
     <comp lib="0" loc="(2040,1900)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="fsregD"/>
+      <a name="label" val="fsregS"/>
       <a name="labelfont" val="SansSerif bold 14"/>
       <a name="width" val="32"/>
     </comp>
@@ -5860,7 +5860,7 @@ a3a1 a1a3 9797 9898 a2a2 9a9a 0 4*a1a1
       <a name="label" val="reset"/>
       <a name="labelfont" val="SansSerif bold 12"/>
     </comp>
-    <comp lib="0" loc="(3040,2020)" name="Tunnel">
+    <comp lib="0" loc="(3040,2030)" name="Tunnel">
       <a name="facing" val="south"/>
       <a name="label" val="resultS0"/>
       <a name="labelfont" val="SansSerif bold 12"/>
@@ -6650,7 +6650,7 @@ a3a1 a1a3 9797 9898 a2a2 9a9a 0 4*a1a1
     <wire from="(2980,2070)" to="(2980,2130)"/>
     <wire from="(300,270)" to="(300,1090)"/>
     <wire from="(300,270)" to="(690,270)"/>
-    <wire from="(3040,2020)" to="(3040,2040)"/>
+    <wire from="(3040,2030)" to="(3040,2040)"/>
     <wire from="(3040,2040)" to="(3080,2040)"/>
     <wire from="(3040,2090)" to="(3040,2100)"/>
     <wire from="(3040,2100)" to="(3080,2100)"/>
