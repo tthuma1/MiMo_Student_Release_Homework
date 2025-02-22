@@ -175,7 +175,6 @@ fetch:	addrsel=pc irload=1 			# Address=PC, Load IR register
 # sw Rd,immed    ; Store Rd into M[immed] Rd->M[immed]; 
 65:	addrsel=pc  imload=1
     addrsel=immed  datawrite=1  datasel=dreg, goto pcincr			# additional increment (cause immed was read) and then new command
-#	pcload=1  pcsel=pc, goto fetch                                  # not optimal way to do this, better goto to pcincr: instead (line above)
 
 # lwi Rd,Rs,immed (66)
 #	Rd <- M[Rs+immed]	PC <- PC + 2
