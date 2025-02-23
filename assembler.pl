@@ -1,7 +1,6 @@
 #!/usr/bin/perl
 use strict;
 use warnings;
-use POSIX qw(floor);
 
 # Assembler for Warren's 16-bit microcontrolled CPU.
 # (c) GPL3 Warren Toomey, 2012
