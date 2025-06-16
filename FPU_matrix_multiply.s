@@ -1,11 +1,11 @@
-main: li r0, 15086 # cos30
+main: li r0, 0.866 # cos30
 li	r1, -0.5 # -sin30
 li r2, 0
 li r3, 0.5 # sin30
 
 li r4, 1.5 # 1.5
 li r5, 3.5 # 3.5
-li r6, 15360 # 1
+li r6, 1.0 # 1
 
 sw	r0, 32768
 sw	r1, 32769
