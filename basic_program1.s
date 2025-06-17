@@ -3,7 +3,7 @@ main:   li r7, 0xff
     li r2, 3
     mul r3, r2, r1
 
-    li r4, 0
+    li r4, 2
     li r5, 5000
     swri r4, r5, r2 # M[5003] = r4
 
