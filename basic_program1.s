@@ -1,11 +1,28 @@
-# This program uses the instructions defined in the
-# basic_microcode.def file. It counts down to 0 from 2
-# and stores -1 in memory location 16.
-# (c) GPL3 Warren Toomey, 2012
-#
-main:	li	r1, 2			# r1 is the counter
-	li	r2, 1			# Used to decrement r1
-loop:	sub	r1, r1, r2		# r1--
-	jnez    r1, loop		# loop if r1 != 0
-	sw	r2, 16			# Save the r2	
+main:   li r7, 0xff
+    li r1, 5
+    li r2, 3
+    mul r3, r2, r1
+
+    li r4, 0
+    li r5, 5000
+    swri r4, r5, r2 # M[5003] = r4
+
+    jsr func
+
+end:    jmp end
+
+func:   push r3
+    push r1
+    subi r3, r3, 3
+    move r1, r3 # r1 = 12, counter
+
+
+loop:   swi r1, r2, 2000
+    dec r1
+    bgt r1, r4, loop
+
+    pop r1
+    pop r3
+    rts
+
 

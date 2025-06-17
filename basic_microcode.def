@@ -13,6 +13,10 @@ fetch:	addrsel=pc irload=1 			# Address=PC, Load IR register
 #	Rd <- Rs - Rt		PC <- PC + 1
 1:	aluop=sub  op2sel=treg  dwrite=1  regsrc=aluout, goto fetch			# ALU=-, ALU 2nd op = treg, write from aluout to reg
 
+# mul Rd,Rs,Rt (2)
+#	Rd <- Rs * Rt		PC <- PC + 1
+2:	aluop=mul  op2sel=treg  dwrite=1  regsrc=aluout, goto fetch			# ALU=-, ALU 2nd op = treg, write from aluout to reg
+
 # and Rd,Rs,Rt (5)
 #	Rd <- Rs AND Rt		PC <- PC + 1
 5:	aluop=and  op2sel=treg  dwrite=1  regsrc=aluout, goto fetch			# ALU=-, ALU 2nd op = treg, write from aluout to reg
@@ -113,7 +117,7 @@ fetch:	addrsel=pc irload=1 			# Address=PC, Load IR register
 38: addrsel=pc  imload=1
     aluop=sub  op2sel=treg, if c then pcincr else jump
 
-# jeqz Rs,Rt,immed (39)
+# jeqz Rs,immed (39)
 # 	if Rs == 0, PC <- immed else  PC <- PC + 2
 39: addrsel=pc  imload=1
     aluop=sub  op2sel=const0, if z then jump else pcincr
@@ -138,6 +142,11 @@ fetch:	addrsel=pc irload=1 			# Address=PC, Load IR register
 # 	if Rs != Rt, PC <- PC + immed else  PC <- PC + 2
 47: addrsel=pc  imload=1
     aluop=sub  op2sel=treg, if z then pcincr else branch
+
+# bgt Rs,Rt,immed (47)
+# 	if Rs > Rt, PC <- PC + immed else  PC <- PC + 2
+48: addrsel=pc  imload=1
+    aluop=sub op2sel=treg, if norz then pcincr else branch
 
 # other branches, same as jump but call branch microinstruction instead of jump
 
